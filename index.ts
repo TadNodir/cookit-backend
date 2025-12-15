@@ -2,6 +2,7 @@ import "dotenv/config";
 import express from "express";
 import cors from "cors";
 import OpenAI from "openai";
+import type { Request, Response } from "express";
 
 const app = express();
 app.use(cors());
@@ -14,7 +15,7 @@ function isDataUrl(u: string) {
   return /^data:image\/[a-zA-Z]+;base64,/.test(u);
 }
 
-app.post("/analyze", async (req, res) => {
+app.post("/analyze", async (req: Request, res: Response) => {
   try {
     const { imageDataUrl, prompt } = req.body as { imageDataUrl: string; prompt: string };
     if (!imageDataUrl || !isDataUrl(imageDataUrl)) {
