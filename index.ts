@@ -48,3 +48,5 @@ app.post("/analyze", async (req: Request, res: Response) => {
 app.listen(process.env.PORT ?? 8787, () => {
   console.log(`Backend running on http://localhost:${process.env.PORT ?? 8787}`);
 });
+
+app.get("/health", (_req, res) => res.json({ ok: true }));
